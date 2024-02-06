@@ -1,14 +1,26 @@
 @import "https://fonts.fontstorage.com/import/gilroy.css";
+
+@font-face {
+    font-family: "Comicoro";
+    src: url("ComicoroRu_0.ttf") format("truetype");
+}
+
+
 h1 {
-    font-family: 'Gilroy';
+    /* font-family: 'Gilroy'; */
+    font-family: "Comicoro";
     display: flex;
     justify-content: center;
     color: aliceblue;
+    font-size: 262.5%;
+    margin-bottom: 16px;
 }
 
 .logo {
-    width: 180px;
-    height: 180px;
+    width: 36%;
+    max-width: 180px;
+    height: 36%;
+    max-height: 180px;
     display: flex;
     justify-content: center;
 }
@@ -22,11 +34,12 @@ img {
 }
 
 p1 {
-    font-family: 'Gilroy';
+    font-family: 'Comicoro';
     display: flex;
     justify-content: center;
     color: rgb(202, 210, 216);
-    margin-top: 10px;
+    margin-top: 12px;
+    font-size: 150%;
 }
 
 .btn1 {
@@ -39,14 +52,16 @@ p1 {
     margin-right: 0 auto;
     display: inline-block;
     text-decoration: none;
-    margin-top: 20px;
+    margin-top: 24px;
 
-    width: 175px;
+    width: 34%;
+    max-width: 175px;
     height: 35px;
-    border-radius: 15px;
-    background-color: blueviolet;
-    border-color: blueviolet;
-    font-family: 'Gilroy';
+    border-radius: 18px;
+    background-color: rgb(140, 71, 204);
+    border-color: rgba(140, 71, 204, 0);
+    font-family: 'Comicoro';
+    font-size: 137.5%;
     opacity: 1;
     transition: 0.3s;
     text-decoration: none;
@@ -56,22 +71,26 @@ p1 {
     
 }
 
-.theworld:hover {opacity: 0.7}
+.theworld:hover {
+    color: rgb(91, 238, 169);
+    background-color: rgb(110, 56, 160);
+}
 
 .theworlddesc {
     text-align: left;
-    font-family: 'Gilroy';
+    font-family: 'Comicoro';
 }
 
 h2 {
-    color: #f2661f;
-    margin-bottom: 2px;
+    color: #c079fa;
+    margin-bottom: 1px;
     font-weight: bold;
+    font-size: 237.5%;
 }
 
 .p2l {
-    color: #b36532;
-    
+    color: #8765d6;
+    font-size: 131.25%;
 }
 
 .descriptiontw {
@@ -79,24 +98,35 @@ h2 {
 }
 
 .p3l {
-    color: #bee864;
-    font-weight: bolder;
-    font-size: 18px;
+    color: #ffeedf;
+    font-weight: 500;
+    font-size: 175%;
 }
 
 span {
-    color: #64e8a2;
+    color: #64e87a;
 }
 
 .tw-preview {
-    margin-top: 10px;
+    margin-top: 12px;
     margin-bottom: 2px;
-    border-radius: 2px;
-    width: 380px;
+    border-radius: 6px;
+    width: 75%;
+    max-width: 380px;
 
 }
 
+#footer {
+    bottom: 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    color: #4f4b5f;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 68.75%;
+}
 
 body {
-    background-color: #252731;
+    background-color: #272531;
+    overflow-x:hidden;
 }
