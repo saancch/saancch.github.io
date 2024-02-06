@@ -2,9 +2,8 @@
 
 @font-face {
     font-family: "Comicoro";
-    src: url("ComicoroRu_0.ttf") format("truetype");
+    src: url("/ComicoroRu_0.ttf") format("truetype");
 }
-
 
 h1 {
     /* font-family: 'Gilroy'; */
