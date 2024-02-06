@@ -127,5 +127,6 @@ span {
 
 body {
     background-color: #272531;
-    overflow-x:hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
