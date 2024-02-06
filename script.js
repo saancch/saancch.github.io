@@ -1,9 +1,9 @@
 $(document).ready(documentReady);
 
 function documentReady() {
-  var MAX_SNOW = 500;
-  var MAX_SNOW_SIZE = 5;
-  var MAX_SNOW_SPEED = 25;
+  var MAX_SNOW = 100;
+  var MAX_SNOW_SIZE = 4;
+  var MAX_SNOW_SPEED = 3;
 
   snowStart();
 
@@ -125,7 +125,7 @@ function documentReady() {
   function changePosition(item) {
     var _width = Math.floor(Math.random() * MAX_SNOW_SIZE);
     var _height = _width;
-    var _blur = Math.floor(Math.random() * 5 + 2);
+    var _blur = Math.floor(Math.random());
     var _left = Math.floor(Math.random() * ($(window).width() - _width));
     var _top = -$(window).height() + Math.floor(Math.random() * ($(window).height() - _height));
 
@@ -143,7 +143,7 @@ function documentReady() {
   function getRandomItem(id) {
     var _width = Math.floor(Math.random() * MAX_SNOW_SIZE);
     var _height = _width;
-    var _blur = Math.floor(Math.random() * 5 + 2);
+    var _blur = Math.floor(Math.random() * 2);
     var _left = Math.floor(Math.random() * ($(window).width() - _width));
     var _top = -$(window).height() + Math.floor(Math.random() * ($(window).height() - _height));
     var _id = id;
