@@ -15,25 +15,19 @@
         </header>
 
         <main>
-            <p>Компания по созданию инди-игр</p>
-            <p>Компания по созданию инди-игр</p>
-            <p>Компания по созданию инди-игр</p>
-            <p>Компания по созданию инди-игр</p>
-            <p>Компания по созданию инди-игр</p>
-            <p>Компания по созданию инди-игр</p>
-            <p>Компания по созданию инди-игр</p>
-            <p>Компания по созданию инди-игр</p>
-            <p>Компания по созданию инди-игр</p>
-            <p>Компания по созданию инди-игр</p>
-            <p>Компания по созданию инди-игр</p>
-            <p>Компания по созданию инди-игр</p>
-            <p>Компания по созданию инди-игр</p>
-            <p>Компания по созданию инди-игр</p>
-            <p>Компания по созданию инди-игр</p>
-            <p>Компания по созданию инди-игр</p>
-            <p>Компания по созданию инди-игр</p>
-            <p>Компания по созданию инди-игр</p>
-            <p>Компания по созданию инди-игр</p>
+            <div class="connection-container">
+                <input id="peerId" type="text" placeholder="Enter peer ID">
+                <button id="connectButton">Connect</button>
+            </div>
+
+            <div class="chat-container" id="chatContainer">
+                <!-- Messages will appear here -->
+            </div>
+
+            <div class="input-container">
+                <input id="messageInput" type="text" placeholder="Type a message" disabled>
+                <button id="sendMessageButton" disabled>Send</button>
+            </div>
         </main>
 
         <footer id="footer">
@@ -43,10 +37,79 @@
             <p>© WinterEvening 2024-2025</p>
         </footer>
 
-        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
-        <script src="script.js"></script>
-        <div id="snow-animation-container"></div> -->
+        <script>
+            let localConnection;
+            let remoteConnection;
+            let sendChannel;
+            let receiveChannel;
+
+            const connectButton = document.getElementById('connectButton');
+            const peerIdInput = document.getElementById('peerId');
+            const messageInput = document.getElementById('messageInput');
+            const sendMessageButton = document.getElementById('sendMessageButton');
+            const chatContainer = document.getElementById('chatContainer');
+
+            function addMessage(content, type) {
+                const messageElement = document.createElement('div');
+                messageElement.className = `chat-message ${type}`;
+                messageElement.textContent = content;
+                chatContainer.appendChild(messageElement);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+
+            connectButton.addEventListener('click', () => {
+                // Initialize the connection
+                localConnection = new RTCPeerConnection();
+
+                // Create a data channel
+                sendChannel = localConnection.createDataChannel('chat');
+                sendChannel.onmessage = (event) => {
+                    addMessage(event.data, 'received');
+                };
+
+                sendChannel.onopen = () => {
+                    messageInput.disabled = false;
+                    sendMessageButton.disabled = false;
+                };
+
+                sendChannel.onclose = () => {
+                    messageInput.disabled = true;
+                    sendMessageButton.disabled = true;
+                };
+
+                // Set up the remote connection
+                remoteConnection = new RTCPeerConnection();
+
+                remoteConnection.ondatachannel = (event) => {
+                    receiveChannel = event.channel;
+                    receiveChannel.onmessage = (event) => {
+                        addMessage(event.data, 'received');
+                    };
+                };
+
+                // Exchange offer and answer
+                localConnection.createOffer().then((offer) => {
+                    return localConnection.setLocalDescription(offer);
+                }).then(() => {
+                    return remoteConnection.setRemoteDescription(localConnection.localDescription);
+                }).then(() => {
+                    return remoteConnection.createAnswer();
+                }).then((answer) => {
+                    return remoteConnection.setLocalDescription(answer);
+                }).then(() => {
+                    return localConnection.setRemoteDescription(remoteConnection.localDescription);
+                });
+            });
+
+            sendMessageButton.addEventListener('click', () => {
+                const message = messageInput.value;
+                if (message) {
+                    addMessage(message, 'sent');
+                    sendChannel.send(message);
+                    messageInput.value = '';
+                }
+            });
+        </script>
 
     </body>
 </html>
